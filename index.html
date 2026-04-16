@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lady & The Voice — Relational Awareness Coaches</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7F2EB;
+    --warm-white: #FDFAF5;
+    --gold: #B8924A;
+    --gold-light: #D4AC6E;
+    --gold-pale: #F0E4CA;
+    --charcoal: #1E1A16;
+    --brown: #4A3728;
+    --brown-mid: #7A5C44;
+    --brown-light: #B8917A;
+    --muted: #8B7355;
+    --border: rgba(184,146,74,0.2);
+    --border-strong: rgba(184,146,74,0.45);
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--warm-white);
+    color: var(--charcoal);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(253,250,245,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--warm-white);
+    background: var(--charcoal);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold); }
+  .nav-mobile { display: none; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 5rem;
+    position: relative;
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 40px; height: 1px;
+    background: var(--gold);
+  }
+  .hero-eyebrow span {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3.2rem, 5vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+    display: block;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: var(--brown-mid);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--warm-white);
+    background: var(--gold);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--charcoal); transform: translateY(-1px); }
+  .btn-outline {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--charcoal);
+    border: 1px solid var(--border-strong);
+    padding: 0.9rem 2.2rem;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right {
+    position: relative;
+    overflow: hidden;
+    background: var(--cream);
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--gold-pale) 0%, var(--cream) 60%, #E8D5B7 100%);
+    z-index: 0;
+  }
+  .hero-photo {
+    position: absolute; inset: 0;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/1743626673864-WM841EUSUBOY5W9ONXXW/unsplash-image-BIk2ANMmNz4.jpg');
+    background-size: cover;
+    background-position: center top;
+    z-index: 1;
+    opacity: 0.55;
+  }
+  .hero-badge {
+    position: absolute;
+    bottom: 3rem; left: -1.5rem;
+    background: var(--charcoal);
+    color: var(--gold-light);
+    padding: 1.25rem 1.75rem;
+    z-index: 3;
+    border-radius: 2px;
+  }
+  .hero-badge .luv-text {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: 0.05em;
+  }
+  .hero-badge .luv-sub {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--brown-light);
+    margin-top: 0.35rem;
+  }
+  .hero-decor {
+    position: absolute;
+    top: 2rem; right: 2rem;
+    width: 120px; height: 120px;
+    border: 1px solid rgba(184,146,74,0.3);
+    border-radius: 50%;
+    z-index: 3;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-decor-inner {
+    width: 80px; height: 80px;
+    border: 1px solid rgba(184,146,74,0.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-decor-text {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ─── MARQUEE BAND ─── */
+  .marquee-band {
+    background: var(--charcoal);
+    padding: 1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-inner {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-inner span {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+  }
+  .marquee-inner .dot {
+    color: var(--brown-light);
+    font-style: normal;
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 5rem; }
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--gold);
+    display: block;
+  }
+  .section-eyebrow span {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+  }
+  h2.display {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  h2.display em { font-style: italic; color: var(--gold); }
+  .lead {
+    font-size: 1rem;
+    color: var(--brown-mid);
+    max-width: 540px;
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  /* ─── WHAT IS RA ─── */
+  .what-is {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 5rem;
+  }
+  .what-is-text {}
+  .luv-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .pillar {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--warm-white);
+    border-radius: 4px;
+    border: 0.5px solid var(--border);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .pillar:hover { border-color: var(--gold); transform: translateX(4px); }
+  .pillar-letter {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 2.5rem;
+  }
+  .pillar-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 0.25rem;
+  }
+  .pillar-content p {
+    font-size: 0.875rem;
+    color: var(--brown-mid);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .what-is-visual {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ra-card {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+  }
+  .ra-card.accent {
+    background: var(--charcoal);
+    border-color: transparent;
+  }
+  .ra-card.accent p { color: var(--gold-light); }
+  .ra-card.accent .card-label { color: var(--brown-light); }
+  .ra-card .card-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .ra-card p {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .ra-card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .ra-mini {
+    background: var(--cream);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    text-align: center;
+  }
+  .ra-mini .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+  .ra-mini span {
+    font-size: 0.78rem;
+    color: var(--brown-mid);
+    letter-spacing: 0.05em;
+    font-weight: 400;
+  }
+
+  /* ─── ABOUT ─── */
+  .about-section {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    padding: 6rem 5rem;
+  }
+  .about-photo-wrap {
+    position: relative;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/aff1d20b-6fd4-4b18-9627-786879b2cafd/Screenshot_20250326_111403_Photos.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 4px;
+  }
+  .about-frame {
+    position: absolute;
+    top: -16px; left: -16px; right: 16px; bottom: 16px;
+    border: 1px solid var(--gold-light);
+    border-radius: 4px;
+    z-index: -1;
+    opacity: 0.5;
+  }
+  .about-awards {
+    position: absolute;
+    bottom: -1.5rem; right: -1.5rem;
+    background: var(--charcoal);
+    padding: 1.25rem 1.5rem;
+    border-radius: 4px;
+    max-width: 220px;
+  }
+  .about-awards .award-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .about-awards .award-label {
+    font-size: 0.72rem;
+    color: var(--brown-light);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+  }
+  .about-text {}
+  .about-names {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .about-body {
+    font-size: 0.95rem;
+    color: var(--brown-mid);
+    line-height: 1.85;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .awards-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+  }
+  .awards-list li {
+    font-size: 0.8rem;
+    color: var(--brown-mid);
+    padding-left: 1.1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+  .awards-list li::before {
+    content: '—';
+    position: absolute; left: 0;
+    color: var(--gold);
+    font-size: 0.7rem;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-section {
+    background: var(--cream);
+    padding: 6rem 5rem;
+  }
+  .services-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+    cursor: pointer;
+  }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover { border-color: var(--gold-light); transform: translateY(-4px); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold-pale);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+  }
+  .service-card p {
+    font-size: 0.855rem;
+    color: var(--brown-mid);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ─── LETTER ─── */
+  .letter-section {
+    padding: 7rem 5rem;
+    max-width: 820px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .letter-section blockquote {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.5vw, 1.9rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--charcoal);
+    line-height: 1.5;
+    margin: 2rem 0;
+    padding: 2rem 3rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .letter-section blockquote::before {
+    content: '\201C';
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 0;
+    position: absolute;
+    top: 1.5rem; left: 1rem;
+    opacity: 0.5;
+  }
+  .letter-body {
+    font-size: 0.95rem;
+    color: var(--brown-mid);
+    line-height: 1.9;
+    text-align: left;
+    font-weight: 300;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .letter-sig {
+    margin-top: 2rem;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  /* ─── TAGLINE BAND ─── */
+  .tagline-band {
+    background: var(--charcoal);
+    padding: 4.5rem 5rem;
+    text-align: center;
+  }
+  .tagline-band h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.2;
+  }
+  .tagline-band h2 strong {
+    font-weight: 400;
+    color: var(--warm-white);
+    font-style: normal;
+  }
+
+  /* ─── PARTNERS GALLERY ─── */
+  .partners-section {
+    background: var(--cream);
+    padding: 6rem 5rem;
+  }
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .partner-card {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border);
+    border-radius: 4px;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .partner-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .partner-photo {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 2px;
+    background-size: cover;
+    background-position: center top;
+  }
+  .partner-name {
+    font-size: 0.78rem;
+    color: var(--brown-mid);
+    text-align: center;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 480px;
+  }
+  .contact-left {
+    background: var(--charcoal);
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-left h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+  .contact-left h2 em { color: var(--gold-light); font-style: italic; }
+  .contact-left p {
+    font-size: 0.9rem;
+    color: var(--brown-light);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .contact-info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .contact-info a {
+    font-size: 0.875rem;
+    color: var(--gold-light);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: color 0.2s;
+  }
+  .contact-info a:hover { color: var(--warm-white); }
+  .contact-right {
+    background: var(--gold-pale);
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brown);
+    font-weight: 500;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--warm-white);
+    border: 0.5px solid var(--border-strong);
+    border-radius: 2px;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-submit {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--warm-white);
+    background: var(--charcoal);
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #16120E;
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--brown-light);
+    letter-spacing: 0.03em;
+  }
+  .footer-logo em { color: var(--gold); font-style: italic; }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: #5A4E40;
+    line-height: 1.5;
+    text-align: center;
+  }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5A4E40;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .hero-eyebrow { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero-desc { animation-delay: 0.4s; }
+  .hero-actions { animation-delay: 0.55s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links, .nav-cta { display: none; }
+    .nav-mobile {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+      color: var(--charcoal);
+    }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 3rem 1.5rem; }
+    .hero-right { min-height: 50vw; }
+    .hero-badge { display: none; }
+    .what-is, .about-section { grid-template-columns: 1fr; padding: 4rem 1.5rem; gap: 3rem; }
+    .about-photo-wrap { order: -1; }
+    .about-awards { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .services-header { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
+    .contact-section { grid-template-columns: 1fr; }
+    .contact-left, .contact-right { padding: 3rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .letter-section { padding: 4rem 1.5rem; }
+    .letter-section blockquote { padding: 1.5rem 1.25rem 1.5rem 2.5rem; }
+    .tagline-band { padding: 3rem 1.5rem; }
+    .services-section, .partners-section { padding: 4rem 1.5rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .footer-links { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="#" class="nav-logo">The <em>Lady</em> & The Voice</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#partners">Partners</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Book a Session</a>
+  <button class="nav-mobile" aria-label="Menu">☰</button>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home" style="padding:0;padding-top:80px;">
+  <div class="hero-left">
+    <div class="hero-eyebrow"><span>Relational Awareness Coaches</span></div>
+    <h1>When you know better,<em>you connect better.</em></h1>
+    <p class="hero-desc">Eileen & Armand help individuals, couples, and communities build deeper, healthier relationships through the power of Relational Awareness.</p>
+    <div class="hero-actions">
+      <a href="#services" class="btn-primary">Explore Our Work</a>
+      <a href="#about" class="btn-outline">Meet The Coaches</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-photo"></div>
+    <div class="hero-badge">
+      <div class="luv-text">L.U.V.</div>
+      <div class="luv-sub">Logically Speaking™</div>
+    </div>
+    <div class="hero-decor">
+      <div class="hero-decor-inner">
+        <div class="hero-decor-text">Oakland<br>Bay Area<br>& Beyond</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE ─── -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Listen</span><span class="dot">✦</span>
+    <span>Understand</span><span class="dot">✦</span>
+    <span>Validate</span><span class="dot">✦</span>
+    <span>Respond, don't react</span><span class="dot">✦</span>
+    <span>L.U.V. Logically Speaking™</span><span class="dot">✦</span>
+    <span>Listen</span><span class="dot">✦</span>
+    <span>Understand</span><span class="dot">✦</span>
+    <span>Validate</span><span class="dot">✦</span>
+    <span>Respond, don't react</span><span class="dot">✦</span>
+    <span>L.U.V. Logically Speaking™</span><span class="dot">✦</span>
+    <span>Listen</span><span class="dot">✦</span>
+    <span>Understand</span><span class="dot">✦</span>
+    <span>Validate</span><span class="dot">✦</span>
+    <span>Respond, don't react</span><span class="dot">✦</span>
+    <span>L.U.V. Logically Speaking™</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ─── WHAT IS RELATIONAL AWARENESS ─── -->
+<div class="what-is" id="what-is">
+  <div class="what-is-text">
+    <div class="section-eyebrow"><span>The Foundation</span></div>
+    <h2 class="display">What is<em>Relational Awareness?</em></h2>
+    <p class="lead" style="margin-bottom:2rem;">The conscious understanding of how your personality, behaviors, and communication style impact others — and how theirs impact you. It's your GPS for human connection.</p>
+    <div class="luv-pillars">
+      <div class="pillar">
+        <div class="pillar-letter">L</div>
+        <div class="pillar-content">
+          <h3>Listen</h3>
+          <p>To understand, not just to reply. Active listening creates the foundation for every meaningful connection.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">U</div>
+        <div class="pillar-content">
+          <h3>Understand</h3>
+          <p>Recognize differences in how others think, feel, and respond — then meet them where they are.</p>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-letter">V</div>
+        <div class="pillar-content">
+          <h3>Validate</h3>
+          <p>Acknowledge what others experience. Validation isn't agreement — it's the bridge to authentic connection.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="what-is-visual">
+    <div class="ra-card accent">
+      <div class="card-label">The Mission</div>
+      <p>"This isn't about fixing people. It's about learning how to show up — with accountability, understanding, and grace."</p>
+    </div>
+    <div class="ra-card">
+      <div class="card-label">Who This Is For</div>
+      <p>Couples, colleagues, parents, leaders — anyone who wants to be seen, heard, and understood.</p>
+    </div>
+    <div class="ra-card-grid">
+      <div class="ra-mini">
+        <span class="icon">💬</span>
+        <span>Couples & Relationships</span>
+      </div>
+      <div class="ra-mini">
+        <span class="icon">🤝</span>
+        <span>Teams & Leadership</span>
+      </div>
+      <div class="ra-mini">
+        <span class="icon">👨‍👩‍👧</span>
+        <span>Family & Youth</span>
+      </div>
+      <div class="ra-mini">
+        <span class="icon">🌍</span>
+        <span>Community Groups</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<div class="about-section" id="about">
+  <div class="about-photo-wrap">
+    <div class="about-photo"></div>
+    <div class="about-frame"></div>
+    <div class="about-awards">
+      <div class="award-num">8+</div>
+      <div class="award-label">Awards & Recognitions</div>
+    </div>
+  </div>
+  <div class="about-text">
+    <div class="section-eyebrow"><span>Your Coaches</span></div>
+    <h2 class="display">Eileen &<em>Armand</em></h2>
+    <div class="about-names">The Lady and The Voice</div>
+    <p class="about-body">An Empower Couple with decades of combined experience in education, media, public speaking, entertainment, nonprofit leadership, and coaching. Founders of the LUV Logically Speaking™ movement — making Relational Awareness accessible, fun, and culturally relevant for everyone.</p>
+    <a href="#contact" class="btn-primary">Work With Us</a>
+    <ul class="awards-list">
+      <li>Jefferson Award Recipients</li>
+      <li>Certificate of Special Recognition — Congresswoman Barbara Lee (combatting human trafficking)</li>
+      <li>Steph Curry / Under Armour Community All-Star Award</li>
+      <li>Black Enterprise 100 Men of Distinction</li>
+      <li>American Cancer Society Emcees of The Year</li>
+      <li>Oakland Mayor proclaimed May 16th "Armand Carr Day"</li>
+      <li>Cisco International Influencers of the Year Award</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ─── SERVICES ─── -->
+<div class="services-section" id="services">
+  <div class="services-header">
+    <div>
+      <div class="section-eyebrow"><span>What We Offer</span></div>
+      <h2 class="display">Our<em>Services</em></h2>
+    </div>
+    <p class="lead">Relational growth isn't just for romantic couples — it's for anyone ready to communicate more clearly, love more intentionally, and connect more deeply.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <h3>Individual Coaching</h3>
+      <p>One-on-one sessions to help you understand your personal communication style, triggers, and relational patterns — so you can show up better in every relationship.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <h3>Couples Coaching</h3>
+      <p>Navigate communication, conflict, and connection as a team. Learn the tools to move from confusion to deeper understanding — together.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <h3>Group Workshops</h3>
+      <p>Interactive Relational Awareness workshops for corporate teams, nonprofits, faith communities, and youth organizations. Practical, powerful, and engaging.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <h3>L.U.V. Logically Speaking™</h3>
+      <p>The signature program — a transformative experience built around Listen, Understand, and Validate. Available as workshops, retreats, and group series.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <h3>Speaking Engagements</h3>
+      <p>Eileen and Armand are dynamic keynote speakers and emcees who bring energy, authenticity, and actionable insight to every stage and event.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06</div>
+      <h3>Community Programs</h3>
+      <p>Dedicated programs for youth, families, and underserved communities — because healthy relationships are for everyone, everywhere.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── LETTER FROM EILEEN & ARMAND ─── -->
+<div class="letter-section" id="letter">
+  <div class="section-eyebrow" style="justify-content:center;"><span>A Note From Us</span></div>
+  <h2 class="display" style="text-align:center;">Hey <em>Family,</em></h2>
+  <blockquote>"Relationships can be beautiful — but they can also be hard. That's where Relational Awareness comes in."</blockquote>
+  <div class="letter-body">
+    <p>We like to call it your GPS for human connection — because it helps you understand where <em>you</em> are, where the <em>other person</em> is, and how to move through the space in between with Chemistry, Connection, and Compatibility.</p>
+    <br>
+    <p>It's not about fixing people. It's not about pointing fingers. It's about learning how to <em>show up</em> — with accountability, understanding, and grace. This journey isn't about being perfect. It's about being present.</p>
+    <br>
+    <p>We've been there ourselves. And we created this work because we know what's possible on the <em>other side</em> of those hard moments. If you're ready to do relationships differently — we're right here with you.</p>
+  </div>
+  <div class="letter-sig">With love and truth, Eileen & Armand</div>
+</div>
+
+<!-- ─── TAGLINE BAND ─── -->
+<div class="tagline-band">
+  <h2><em>When you know better,</em><br><strong>you will connect better.</strong></h2>
+</div>
+
+<!-- ─── PARTNERS ─── -->
+<div class="partners-section" id="partners">
+  <div class="section-eyebrow"><span>In Good Company</span></div>
+  <h2 class="display" style="margin-bottom:0.5rem;">Our<em>Partners &amp; Connections</em></h2>
+  <p class="lead">A few of the remarkable people we've had the privilege of connecting with along the way.</p>
+  <div class="partners-grid">
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/1745101995255-26TCV4PTEDBAUV25VRD8/20221228_201603.jpg')"></div>
+      <div class="partner-name">Gladys Knight</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/68bed0a9-5a41-4099-9d92-c6d7786c81e4/FB_IMG_1669648276403.jpg')"></div>
+      <div class="partner-name">MC Hammer &amp; Stephanie Burrel</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/f43b7cf8-d2ad-41df-9f6f-35f3728ec240/FB_IMG_1672764360942.jpg')"></div>
+      <div class="partner-name">Angela Yee</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/715ade5e-6246-4ea0-b29a-a26c77490d0a/Screenshot_20230206_163512_Chrome.jpg')"></div>
+      <div class="partner-name">Raphael Saadiq</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/313084b0-8bcf-464c-bbe1-1013bf1dad37/Screenshot_20221009-160213_Instagram.jpg')"></div>
+      <div class="partner-name">Michelle Ghee</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/c6b5f801-fdcd-4ce7-997b-00529d0e7022/Screenshot_20221223_222155_Chrome.jpg')"></div>
+      <div class="partner-name">Morris Chestnut</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/66a6f79c-7f7e-4b12-8549-5b394f1f8bb1/Screenshot_20250420_181623_Facebook.jpg')"></div>
+      <div class="partner-name">Flex &amp; Shanice</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-photo" style="background-image:url('https://images.squarespace-cdn.com/content/v1/67ed906636f2ec358a8e19f7/c50a28d6-7c3a-4d17-8bae-09f93fce596a/tempImageYWuBx5.png')"></div>
+      <div class="partner-name">Sway</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── CONTACT ─── -->
+<div class="contact-section" id="contact">
+  <div class="contact-left">
+    <div class="section-eyebrow" style="margin-bottom:1rem;"><span style="color:var(--gold);">Get In Touch</span></div>
+    <h2>Let's <em>Connect</em><br>with Purpose.</h2>
+    <p>Ready to do relationships differently? Whether you're booking a coaching session, workshop, or speaking engagement — we'd love to hear from you.</p>
+    <div class="contact-info">
+      <a href="mailto:info@ladyandthevoice.com">✉ info@ladyandthevoice.com</a>
+      <a href="tel:5105717999">☎ (510) 571-7999</a>
+    </div>
+  </div>
+  <div class="contact-right">
+    <div class="section-eyebrow"><span>Book a Session</span></div>
+    <h2 class="display" style="font-size:1.8rem;margin-bottom:1.5rem;">Send Us a Message</h2>
+    <form class="contact-form" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" placeholder="Eileen">
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="you@email.com">
+      </div>
+      <div class="form-group">
+        <label for="service">I'm interested in...</label>
+        <select id="service">
+          <option value="">Select a service</option>
+          <option>Individual Coaching</option>
+          <option>Couples Coaching</option>
+          <option>Group Workshop</option>
+          <option>L.U.V. Logically Speaking™ Program</option>
+          <option>Speaking Engagement</option>
+          <option>Community Program</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" placeholder="Tell us a little about what you're looking for..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message →</button>
+    </form>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">The <em>Lady</em> & The Voice — Relational Awareness Coaches</div>
+  <div class="footer-copy">
+    LUV Logically Speaking™ is a trademark of The Lady and The Voice, LLC. All rights reserved.<br>
+    All content, designs, and frameworks © The Lady and The Voice LLC. May not be reproduced without written permission.
+  </div>
+  <div class="footer-links">
+    <a href="#">Terms</a>
+    <a href="#">Privacy</a>
+    <a href="#">Refund Policy</a>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Message Sent ✓';
+  btn.style.background = '#B8924A';
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>
